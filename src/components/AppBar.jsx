@@ -1,8 +1,8 @@
-import { View, StyleSheet, Pressable, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import Subheading from './Subheading';
 import { Link } from "react-router-native";
-
+import useUserInfo from '../hooks/useUserInfo';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,19 +26,21 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const { data, loading, signOut } = useUserInfo()
+  
   return (
   <View style={styles.container}>
     <ScrollView contentContainerStyle={styles.scrollContainer} horizontal>
-      <Pressable >
         <Link to="/">
             <Subheading style={styles.gap}>Repositories</Subheading>
         </Link>
-      </Pressable>
-      <Pressable >
+        {!loading && data.me ? 
         <Link to="/signin">
-            <Subheading style={styles.gap}>Sign In</Subheading>
-          </Link>
-      </Pressable>
+          <Subheading onPress={signOut} style={styles.gap}>Sign Out</Subheading>
+        </Link> :
+        <Link to="/signin">
+          <Subheading style={styles.gap}>Sign In</Subheading>
+      </Link> }
     </ScrollView>
   </View>
   )

@@ -1,5 +1,6 @@
-{
-  "expo": {
+import 'dotenv/config';
+
+export default {
     "name": "reactnative-studyapp",
     "slug": "reactnative-studyapp",
     "version": "1.0.0",
@@ -29,6 +30,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    extra: {
+      env: process.env.ENV,
+      apolloUri: process.env.APOLLO_URI,
+    },
   }
-}
+

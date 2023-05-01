@@ -1,8 +1,11 @@
 import FormikTextInput from './FormikTextInput';
 import * as yup from 'yup';
 import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import useSignIn from '../hooks/useSignIn';
 import { Formik } from 'formik';
 import Subheading from './Subheading';
+import { useNavigate } from "react-router-native";
+
 
 const initialValues = {
   username: '',
@@ -48,7 +51,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const SignIn = ( {onSubmit}) => {
+const SignInForm = ({onSubmit}) => {
+
   return (
     <View style={styles.formContainer}>
       <View style={styles.fieldsContainer}>
@@ -63,17 +67,26 @@ const SignIn = ( {onSubmit}) => {
 };
 
 const FormValues = () => {
-  const onSubmit = values => {
-    console.log(values);
-    if ((!values.username === false) && (!values.password === false)) {
-      console.log('There is an error');
-    } 
+  const navigate = useNavigate();
+  const [signIn] = useSignIn();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+    try {
+      const { data } = await signIn({ username, password });
+      console.log(data);
+      if (data.authenticate.accessToken) {
+        navigate("/")
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}
     >
-      {({ handleSubmit }) => <SignIn onSubmit={handleSubmit} />}
+      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
     </Formik>
   );
 };
