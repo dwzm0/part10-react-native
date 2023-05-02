@@ -2,10 +2,10 @@ import { useQuery, useApolloClient } from '@apollo/client';
 import { useNavigate } from "react-router-native"
 import useAuthStorage from "./useAuthStorage"
 
-import { GET_ME } from '../graphql/queries';
+import { GET_CURRENT_USER } from '../graphql/queries';
 
 const useUserInfo = () => {
-    const {data, loading} = useQuery(GET_ME)
+    const { data } = useQuery(GET_CURRENT_USER)
 
     const authStorage = useAuthStorage()
     const apolloClient = useApolloClient()
@@ -16,7 +16,7 @@ const useUserInfo = () => {
         navigate('/')
     }
 
-    return {data, loading, signOut}
+    return {data, signOut}
 }
 
 export default useUserInfo

@@ -1,6 +1,7 @@
 import {View, Image, StyleSheet } from 'react-native';
 import Text from './Text'
 import Subheading from './Subheading';
+import  formatInThousands  from '../utils/formatter'
 
 
 const styles = StyleSheet.create({
@@ -75,11 +76,11 @@ const RepositoryItem = ({item}) => {
            </View>
             <View style={styles.statsContainer}>
                 <View >
-                <Subheading color="textPrimary">{item.stargazersCount >= 1000 ? String(item.stargazersCount).slice(0, 1) + "." + String(item.stargazersCount).slice(1, 2) + "k"  : item.stargazersCount}</Subheading>
+                <Subheading color="textPrimary">{formatInThousands(item.stargazersCount)}</Subheading>
                     <Text>Stars</Text>
                 </View>
                 <View>
-                <Subheading color="textPrimary">{item.forksCount >= 1000 ? String(item.forksCount).slice(0, 1) + "." + String(item.forksCount).slice(1, 2) + "k"  : item.forksCount}</Subheading>
+                <Subheading color="textPrimary">{formatInThousands(item.forksCount)}</Subheading>
                     <Text>Forks</Text>
                 </View>
                 <View >
