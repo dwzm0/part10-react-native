@@ -1,8 +1,7 @@
 import {View, Image, StyleSheet } from 'react-native';
-import Text from './Text'
-import Subheading from './Subheading';
-import  formatInThousands  from '../utils/formatter'
-
+import Text from '../Text'
+import Subheading from '../Subheading';
+import  formatInThousands  from '../../utils/formatter'
 
 const styles = StyleSheet.create({
   container: {
@@ -56,10 +55,9 @@ const styles = StyleSheet.create({
   }
   });
 
-
 const RepositoryItem = ({item}) => {
     return (
-        <View style={styles.container}>
+        <View testID="repositoryItem" style={styles.container}>
            <View style={styles.infoContainer} >     
                 <View style={styles.logoContainer}>
                   <Image style={styles.logo} source={{uri: `${item.ownerAvatarUrl}`}}/>  

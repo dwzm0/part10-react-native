@@ -1,8 +1,8 @@
 import { StyleSheet, View, } from 'react-native';
 import { Route, Routes, Navigate } from 'react-router-native';
-import FormValues from './SignIn';
-import RepositoryList from './RepositoryList';
+import FormValues from './SignIn/index';
 import AppBar from './AppBar/index';
+import RepositoryList from './RepositoryList/index';
 
 const styles = StyleSheet.create({
   container: {
