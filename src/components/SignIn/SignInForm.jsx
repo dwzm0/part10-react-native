@@ -1,5 +1,5 @@
-import FormikTextInput from './FormikTextInput';
-import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import FormikTextInput from '../FormikTextInput';
+import { View, Pressable, StyleSheet } from 'react-native';
 import Subheading from '../Subheading';
 
 const styles = StyleSheet.create({
@@ -45,9 +45,9 @@ const styles = StyleSheet.create({
         <FormikTextInput name="username" style={styles.field} placeholder="username" />
         <FormikTextInput name="password" style={styles.field} placeholder="password" secureTextEntry />
         </View>
-        <TouchableWithoutFeedback onPress={onSubmit} style={styles.buttonContainer} >
+        <Pressable onPress={onSubmit} style={styles.buttonContainer} >
           <Subheading style={styles.button}>Sign In</Subheading>
-        </TouchableWithoutFeedback>
+        </Pressable>
       </View>
     )
   };
